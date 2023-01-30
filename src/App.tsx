@@ -1,11 +1,48 @@
-import { Button } from "antd";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ConfigProvider } from "antd";
+
+import { CommonSuspense } from "components";
+import { AppLayout } from "layouts";
+import { routerList } from "routers/router.routes";
+import { IChildrenRouter, IRouter } from "types/router.model";
+import NotFoundPage from "pages/NotFoundPage";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">Test tailwind</h1>
-      <Button type="primary">Test antd</Button>
-    </div>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#ff7200"
+        }
+      }}
+    >
+      <BrowserRouter>
+        <CommonSuspense>
+          <Routes>
+            <Route element={<AppLayout />}>
+              {routerList.map(({ path, element, children }: IRouter) => {
+                if (children && children.length > 0) {
+                  return (
+                    <Route key={path}>
+                      <Route key={path} path={path} element={element} />
+                      {children.map((route: IChildrenRouter) => (
+                        <Route
+                          key={route.path}
+                          path={route.path}
+                          element={route.element}
+                        />
+                      ))}
+                    </Route>
+                  );
+                }
+                return <Route key={path} path={path} element={element} />;
+              })}
+            </Route>
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </CommonSuspense>
+      </BrowserRouter>
+    </ConfigProvider>
   );
 }
 

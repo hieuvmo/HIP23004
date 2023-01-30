@@ -16,7 +16,7 @@ module.exports = {
         "2xl-max": { max: "1320px" }
       },
       colors: {
-        primary: "#7F56D9"
+        primary: "#ff7200"
       }
     }
   },
