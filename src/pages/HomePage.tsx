@@ -1,5 +1,7 @@
+import { Home } from "modules";
+
 const HomePage = () => {
-  return <div>Home Page</div>;
+  return <Home />;
 };
 
 export default HomePage;

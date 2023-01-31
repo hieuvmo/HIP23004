@@ -13,6 +13,7 @@
     "pre-commit": "yarn lint && yarn prettier"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.2",
     "antd": "^5.1.6",
     "axios": "^1.2.6",
     "clsx": "^1.2.1",
@@ -21,6 +22,7 @@
     "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.0",
     "zod": "^3.20.2"
   },
